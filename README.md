@@ -42,17 +42,17 @@ Computer Graphics and Animation
 * [Assignment 2][ass2] Create a short animated movie. Assesses your understanding of 3D programming and animation.
 
 
-[tut1]: <Docs/Tutorial1.pdf>
-[tut2]: <Docs/Tutorial2.pdf>
-[tut3]: <Docs/Tutorial3.pdf>
-[tut4]: <Docs/Tutorial4.pdf>
-[tut5]: <Docs/Tutorial5.pdf>
-[tut6]: <Docs/Tutorial6.pdf>
-[tut7]: <Docs/Tutorial7.pdf>
-[tut8]: <Docs/Tutorial8.pdf>
+[tut1]: <Docs/Tutorial1.html>
+[tut2]: <Docs/Tutorial2.html>
+[tut3]: <Docs/Tutorial3.html>
+[tut4]: <Docs/Tutorial4.html>
+[tut5]: <Docs/Tutorial5.html>
+[tut6]: <Docs/Tutorial6.html>
+[tut7]: <Docs/Tutorial7.html>
+[tut8]: <Docs/Tutorial8.html>
 
-[test]: <Docs/In-SemesterTest.pdf>
-[ass1]: <Docs/Assignment1.pdf>
-[ass2]: <Docs/Assignment2.pdf>
+[test]: <Docs/In-SemesterTest.html>
+[ass1]: <Docs/Assignment1.html>
+[ass2]: <Docs/Assignment2.html>
 
 [T3D]: <https://github.com/rollingt/t3d-graphics-engine>
