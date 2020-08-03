@@ -1,5 +1,6 @@
-# KIT307-2020
-Computer Graphics and Animation
+# Computer Graphics and Animation
+![](https://img.shields.io/badge/engine-t3d--graphics--engine-informational?link=https://github.com/rollingt/t3d-graphics-engine)  
+![](https://img.shields.io/badge/course-KIT307,%20Semester%202,%202020-informational)
 
 
 ## Tutorials
@@ -41,18 +42,17 @@ Computer Graphics and Animation
 * [Assignment 1][ass1] Write code to create 3D objects that may be used in assignment 2. Assesses your knowledge of 3D representations and programming.
 * [Assignment 2][ass2] Create a short animated movie. Assesses your understanding of 3D programming and animation.
 
+[tut1]: <https://github.com/Solflame/KIT307-2020/wiki/Tutorials#2D-Drawing>
+[tut2]: <https://github.com/Solflame/KIT307-2020/wiki/Tutorials#2D-Transformations>
+[tut3]: <https://github.com/Solflame/KIT307-2020/wiki/Tutorials#3D-Objects>
+[tut4]: <https://github.com/Solflame/KIT307-2020/wiki/Tutorials#Sweeps-and-Composites>
+[tut5]: <https://github.com/Solflame/KIT307-2020/wiki/Tutorials#Lighting-and-Shaders>
+[tut6]: <https://github.com/Solflame/KIT307-2020/wiki/Tutorials#Animation>
+[tut7]: <https://github.com/Solflame/KIT307-2020/wiki/Tutorials#Textures>
+[tut8]: <https://github.com/Solflame/KIT307-2020/wiki/Tutorials#Effects-and-Sound>
 
-[tut1]: <Docs/Tutorial1.html>
-[tut2]: <Docs/Tutorial2.html>
-[tut3]: <Docs/Tutorial3.html>
-[tut4]: <Docs/Tutorial4.html>
-[tut5]: <Docs/Tutorial5.html>
-[tut6]: <Docs/Tutorial6.html>
-[tut7]: <Docs/Tutorial7.html>
-[tut8]: <Docs/Tutorial8.html>
-
-[test]: <Docs/In-SemesterTest.html>
-[ass1]: <Docs/Assignment1.html>
-[ass2]: <Docs/Assignment2.html>
+[test]: <https://github.com/Solflame/KIT307-2020/wiki/Test>
+[ass1]: <https://github.com/Solflame/KIT307-2020/wiki/Assignment1>
+[ass2]: <https://github.com/Solflame/KIT307-2020/wiki/Assignment2>
 
 [T3D]: <https://github.com/rollingt/t3d-graphics-engine>
