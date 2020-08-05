@@ -45,6 +45,19 @@ namespace T3D {
 			x = x + (lineLength / lineRepeats);
 			y = y - (lineLength / lineRepeats);
 		}
+
+		// Reset coords
+		x = lineBase;
+		y = lineLength;
+
+		// Draw Bres lines
+		for (int i = 0; i <= lineRepeats; i++) {
+			drawBresLine(lineBase, lineBase, x, y, Colour(0, 255, 0, 255));
+			std::cout << "  " << x << "\t" << y << "\t" << i << "\n";
+
+			x = x + (lineLength / lineRepeats);
+			y = y - (lineLength / lineRepeats);
+		}
 	}
 
 
@@ -73,7 +86,34 @@ namespace T3D {
 
 
 	void DrawTask::drawBresLine(int x1, int y1, int x2, int y2, Colour c) {
+		// Calculate delta
+		int deltaX = x2 - x1;
+		int deltaY = y2 - y1;
+		int error = deltaX - deltaY;
 
+		// Calculate steps
+		int stepX = x1 < x2 ? 1 : -1;
+		int stepY = y1 < y2 ? 1 : -1;
+
+		// Draw pixels for each step
+		int x = x1;
+		int y = y1;
+
+		while (x != x2 || y != y2) {
+			drawArea->plotPixel(x, y, c);
+
+			int err = error;
+
+			if (err < deltaX) {
+				error += deltaX;
+				y += stepY;
+			}
+
+			if (err > -deltaY) {
+				error -= deltaY;
+				x += stepX;
+			}
+		}
 	}
 
 
