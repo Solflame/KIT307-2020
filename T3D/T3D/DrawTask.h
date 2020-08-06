@@ -27,6 +27,7 @@ namespace T3D {
 		void drawBresLine(int x1, int y1, int x2, int y2, Colour c);
 		void drawTrigCircle(int cx, int cy, int r, Colour c);
 		void drawPythCircle(int cx, int cy, int r, Colour c);
+		void drawBresCircle(int cx, int cy, int r, Colour c);
 
 		virtual void update(float dt);
 

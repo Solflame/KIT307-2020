@@ -81,7 +81,7 @@ namespace T3D {
 		int circleSize = 150;
 		int circleNum = 12;
 
-		// Draw circle with trigonometry
+		// Draw trigonometry circles
 		x = circleBaseX + 450 + offset;
 		y = circleBaseY + 150;
 		int r = circleSize;
@@ -98,7 +98,7 @@ namespace T3D {
 			r -= (circleSize / circleNum);
 		}
 
-		// Draw circle with pythagoras
+		// Draw pythagoras circles
 		x = circleBaseX + 150;
 		y = circleBaseY + 450 + offset;
 		r = circleSize;
@@ -111,6 +111,23 @@ namespace T3D {
 				std::cout << ">>\t" << x << "\t" << y << "\t" << r << "\t" << i + 1 << "\n";
 
 			drawPythCircle(x, y, r, Colour(255, 0, 255, 255));
+
+			r -= (circleSize / circleNum);
+		}
+
+		// Draw bres circles
+		x = circleBaseX + 450 + offset;
+		y = circleBaseY + 450 + offset;
+		r = circleSize;
+
+		if (debug) // Console debug header
+			std::cout << "\nDEBUG\tBres circles" << "\n" << "\t[X]\t[Y]\t[R]\t[I]" << "\n";
+
+		for (int i = 0; i < circleNum; i++) {
+			if (debug) // Console debug values
+				std::cout << ">>\t" << x << "\t" << y << "\t" << r << "\t" << i + 1 << "\n";
+
+			drawBresCircle(x, y, r, Colour(255, 255, 0, 255));
 
 			r -= (circleSize / circleNum);
 		}
@@ -206,6 +223,37 @@ namespace T3D {
 
 		for (int y = 0; y <= r / sqrt(2); y++) {
 			x = (int)sqrt(r * r - y * y);
+
+			// Mirror for each segment
+			drawArea->plotPixel(cx + x, cy + y, c);
+			drawArea->plotPixel(cx + y, cy + x, c);
+			drawArea->plotPixel(cx + x, cy - y, c);
+			drawArea->plotPixel(cx + y, cy - x, c);
+			drawArea->plotPixel(cx - x, cy + y, c);
+			drawArea->plotPixel(cx - y, cy + x, c);
+			drawArea->plotPixel(cx - x, cy - y, c);
+			drawArea->plotPixel(cx - y, cy - x, c);
+		}
+	}
+
+
+	void DrawTask::drawBresCircle(int cx, int cy, int r, Colour c) {
+		// Draw pixels for each step
+		int x = 0;
+		int y = r;
+		int d = 3 - (2 * r);
+
+		while (y >= x) {
+			x++;
+
+			// Find next decision
+			if (d > 0) {
+				y--;
+				d = d + 4 * (x - y) + 10;
+			}
+			else {
+				d = d + 4 * x + 6;
+			}
 
 			// Mirror for each segment
 			drawArea->plotPixel(cx + x, cy + y, c);
