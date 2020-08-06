@@ -8,6 +8,7 @@
 //
 // Simple task for drawing to and animating textures, used in tutorial 1 for practice implementing drawing routines
 
+#define _USE_MATH_DEFINES
 #include <math.h>
 #include "DrawTask.h"
 
@@ -27,44 +28,74 @@ namespace T3D {
 	void DrawTask::init() {
 		drawArea->clear(Colour(0, 0, 0, 255));
 
-		// Console debug header
-		if (debug) {
-			std::cout << "|   X\t Y\t" << "i  |" << "\n";
-			std::cout << "|------------------|" << "\n";
-		}
-
 		int offset = 10;
+
+		/* ============
+		*	Draw lines
+		*  ============*/
 		int lineBaseX = offset;
 		int lineBaseY = offset;
 		int lineLength = 300;
-		int lineRepeats = 12;
+		int lineNum = 12;
 
 		// Draw DDA lines
 		int x = lineBaseX + lineLength;
 		int y = lineBaseY;
 
-		for (int i = 0; i <= lineRepeats; i++) {
+		if (debug) // Console debug header
+			std::cout << "\nDEBUG\tDDA lines" << "\n" << "\t[X]\t[Y]\t[I]" << "\n";
+
+		for (int i = 0; i <= lineNum; i++) {
 			if (debug) // Console debug values
-				std::cout << "  " << x << "\t" << y << "\t" << i + 1 << "\n";
+				std::cout << ">>\t" << x << "\t" << y << "\t" << i + 1 << "\n";
 
 			drawDDALine(lineBaseX, lineBaseY, x, y, Colour(255, 0, 0, 255));
 
-			x -= (lineLength / lineRepeats);
-			y += (lineLength / lineRepeats);
+			x -= (lineLength / lineNum);
+			y += (lineLength / lineNum);
 		}
 
-		//Draw Bres lines
+		// Draw Bres lines
 		x = lineBaseX + lineLength;
 		y = lineBaseY;
 
-		for (int i = 0; i <= lineRepeats; i++) {
+		if (debug) // Console debug header
+			std::cout << "\nDEBUG\tBres lines" << "\n" << "\t[X]\t[Y]\t[I]" << "\n";
+
+		for (int i = 0; i <= lineNum; i++) {
 			if (debug) // Console debug values
-				std::cout << "  " << x << "\t" << y << "\t" << i + 1 << "\n";
+				std::cout << ">>\t" << x << "\t" << y << "\t" << i + 1 << "\n";
 
 			drawBresLine(x, y, lineBaseX + lineLength, lineBaseY + lineLength, Colour(0, 255, 0, 255));
 
-			x -= (lineLength / lineRepeats);
-			y += (lineLength / lineRepeats);
+			x -= (lineLength / lineNum);
+			y += (lineLength / lineNum);
+		}
+
+
+		/* ==============
+		*	Draw circles
+		*  ==============*/
+		int circleBaseX = 450 + (offset * 2);
+		int circleBaseY = 150 + offset;
+		int circleSize = 150;
+		int circleNum = 12;
+
+		if (debug) // Console debug header
+			std::cout << "\nDEBUG\tTrig circles" << "\n" << "\t[X]\t[Y]\t[R]\t[I]" << "\n";
+
+		// Draw circle with trigonometry
+		x = circleBaseX;
+		y = circleBaseY;
+		int r = circleSize;
+
+		for (int i = 0; i < circleNum; i++) {
+			if (debug) // Console debug values
+				std::cout << ">>\t" << x << "\t" << y << "\t" << r << "\t" << i + 1 << "\n";
+
+			drawTrigCircle(x, y, r, Colour(0, 255, 255, 255));
+
+			r -= (circleSize / circleNum);
 		}
 	}
 
@@ -121,6 +152,33 @@ namespace T3D {
 				error -= deltaY;
 				x += stepX;
 			}
+		}
+	}
+
+
+	void DrawTask::drawTrigCircle(int cx, int cy, int r, Colour c) {
+		double theta;
+
+		// Calculate steps
+		double step = 2 * M_PI / 750;
+
+		// Draw pixels for each step
+		int x = cx;
+		int y = cy;
+
+		for (theta = 0; theta < M_PI / 4; theta += step) {
+			x = (int)(r * cos(theta));
+			y = (int)(r * sin(theta));
+
+			// Mirror for each segment
+			drawArea->plotPixel(cx + x, cy + y, c);
+			drawArea->plotPixel(cx + y, cy + x, c);
+			drawArea->plotPixel(cx + x, cy - y, c);
+			drawArea->plotPixel(cx + y, cy - x, c);
+			drawArea->plotPixel(cx - x, cy + y, c);
+			drawArea->plotPixel(cx - y, cy + x, c);
+			drawArea->plotPixel(cx - x, cy - y, c);
+			drawArea->plotPixel(cx - y, cy - x, c);
 		}
 	}
 
