@@ -13,26 +13,25 @@
 #include "T3DApplication.h"
 #include "Texture.h"
 
-namespace T3D{
+namespace T3D {
 
 	class DrawTask :
 		public Task
 	{
 	public:
-		DrawTask(T3DApplication *app, Texture* tex);
+		DrawTask(T3DApplication* app, Texture* tex);
 		~DrawTask(void);
 
 		void init();
 		void drawDDALine(int x1, int y1, int x2, int y2, Colour c);
 		void drawBresLine(int x1, int y1, int x2, int y2, Colour c);
 		void drawTrigCircle(int cx, int cy, int r, Colour c);
+		void drawPythCircle(int cx, int cy, int r, Colour c);
 
 		virtual void update(float dt);
 
 	private:
-		Texture *drawArea;
+		Texture* drawArea;
 		bool debug;
 	};
-
 }
-

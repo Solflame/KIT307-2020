@@ -76,24 +76,41 @@ namespace T3D {
 		/* ==============
 		*	Draw circles
 		*  ==============*/
-		int circleBaseX = 450 + (offset * 2);
-		int circleBaseY = 150 + offset;
+		int circleBaseX = offset;
+		int circleBaseY = offset;
 		int circleSize = 150;
 		int circleNum = 12;
 
+		// Draw circle with trigonometry
+		x = circleBaseX + 450 + offset;
+		y = circleBaseY + 150;
+		int r = circleSize;
+
 		if (debug) // Console debug header
 			std::cout << "\nDEBUG\tTrig circles" << "\n" << "\t[X]\t[Y]\t[R]\t[I]" << "\n";
-
-		// Draw circle with trigonometry
-		x = circleBaseX;
-		y = circleBaseY;
-		int r = circleSize;
 
 		for (int i = 0; i < circleNum; i++) {
 			if (debug) // Console debug values
 				std::cout << ">>\t" << x << "\t" << y << "\t" << r << "\t" << i + 1 << "\n";
 
 			drawTrigCircle(x, y, r, Colour(0, 255, 255, 255));
+
+			r -= (circleSize / circleNum);
+		}
+
+		// Draw circle with pythagoras
+		x = circleBaseX + 150;
+		y = circleBaseY + 450 + offset;
+		r = circleSize;
+
+		if (debug) // Console debug header
+			std::cout << "\nDEBUG\tPyth circles" << "\n" << "\t[X]\t[Y]\t[R]\t[I]" << "\n";
+
+		for (int i = 0; i < circleNum; i++) {
+			if (debug) // Console debug values
+				std::cout << ">>\t" << x << "\t" << y << "\t" << r << "\t" << i + 1 << "\n";
+
+			drawPythCircle(x, y, r, Colour(255, 0, 255, 255));
 
 			r -= (circleSize / circleNum);
 		}
@@ -169,6 +186,26 @@ namespace T3D {
 		for (theta = 0; theta < M_PI / 4; theta += step) {
 			x = (int)(r * cos(theta));
 			y = (int)(r * sin(theta));
+
+			// Mirror for each segment
+			drawArea->plotPixel(cx + x, cy + y, c);
+			drawArea->plotPixel(cx + y, cy + x, c);
+			drawArea->plotPixel(cx + x, cy - y, c);
+			drawArea->plotPixel(cx + y, cy - x, c);
+			drawArea->plotPixel(cx - x, cy + y, c);
+			drawArea->plotPixel(cx - y, cy + x, c);
+			drawArea->plotPixel(cx - x, cy - y, c);
+			drawArea->plotPixel(cx - y, cy - x, c);
+		}
+	}
+
+
+	void DrawTask::drawPythCircle(int cx, int cy, int r, Colour c) {
+		// Draw pixels for each step
+		int x = cx;
+
+		for (int y = 0; y <= r / sqrt(2); y++) {
+			x = (int)sqrt(r * r - y * y);
 
 			// Mirror for each segment
 			drawArea->plotPixel(cx + x, cy + y, c);
