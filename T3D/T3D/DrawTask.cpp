@@ -15,6 +15,7 @@ namespace T3D {
 
 	DrawTask::DrawTask(T3DApplication* app, Texture* tex) : Task(app) {
 		drawArea = tex;
+		debug = true;
 		init();
 	}
 
@@ -25,38 +26,45 @@ namespace T3D {
 
 	void DrawTask::init() {
 		drawArea->clear(Colour(0, 0, 0, 255));
-		//drawDDALine(100,100,200,200,Colour(0,0,0,255));
-
-		int lineBase = 10;
-		int lineLength = 600 + lineBase;
-		int lineRepeats = 12;
-		int x = lineBase;
-		int y = lineLength;
 
 		// Console debug header
-		std::cout << "|   X\t Y\t" << "i  |" << "\n";
-		std::cout << "|------------------|" << "\n";
-
-		// Draw DDA lines
-		for (int i = 0; i <= lineRepeats; i++) {
-			drawDDALine(lineBase, lineBase, x, y, Colour(255, 0, 0, 255));
-			std::cout << "  " << x << "\t" << y << "\t" << i << "\n";
-
-			x = x + (lineLength / lineRepeats);
-			y = y - (lineLength / lineRepeats);
+		if (debug) {
+			std::cout << "|   X\t Y\t" << "i  |" << "\n";
+			std::cout << "|------------------|" << "\n";
 		}
 
-		// Reset coords
-		x = lineBase;
-		y = lineLength;
+		int offset = 10;
+		int lineBaseX = offset;
+		int lineBaseY = offset;
+		int lineLength = 300;
+		int lineRepeats = 12;
 
-		// Draw Bres lines
+		// Draw DDA lines
+		int x = lineBaseX + lineLength;
+		int y = lineBaseY;
+
 		for (int i = 0; i <= lineRepeats; i++) {
-			drawBresLine(lineBase, lineBase, x, y, Colour(0, 255, 0, 255));
-			std::cout << "  " << x << "\t" << y << "\t" << i << "\n";
+			if (debug) // Console debug values
+				std::cout << "  " << x << "\t" << y << "\t" << i + 1 << "\n";
 
-			x = x + (lineLength / lineRepeats);
-			y = y - (lineLength / lineRepeats);
+			drawDDALine(lineBaseX, lineBaseY, x, y, Colour(255, 0, 0, 255));
+
+			x -= (lineLength / lineRepeats);
+			y += (lineLength / lineRepeats);
+		}
+
+		//Draw Bres lines
+		x = lineBaseX + lineLength;
+		y = lineBaseY;
+
+		for (int i = 0; i <= lineRepeats; i++) {
+			if (debug) // Console debug values
+				std::cout << "  " << x << "\t" << y << "\t" << i + 1 << "\n";
+
+			drawBresLine(x, y, lineBaseX + lineLength, lineBaseY + lineLength, Colour(0, 255, 0, 255));
+
+			x -= (lineLength / lineRepeats);
+			y += (lineLength / lineRepeats);
 		}
 	}
 

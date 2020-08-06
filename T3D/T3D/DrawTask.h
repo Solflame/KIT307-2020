@@ -30,6 +30,7 @@ namespace T3D{
 
 	private:
 		Texture *drawArea;
+		bool debug;
 	};
 
 }
