@@ -131,6 +131,29 @@ namespace T3D {
 
 			r -= (circleSize / circleNum);
 		}
+
+
+		/* ==================
+		*	In-Semester Test
+		*  ==================*/
+
+		// Draw Triangles
+		vector<Vector3> points = {
+			{Vector3(100, 100, 0)}, {Vector3(200, 100, 0)}, {Vector3(100, 200, 0)},
+			{Vector3(500, 500, 0)}, {Vector3(520, 520, 0)}, {Vector3(500, 520, 0)},
+			{Vector3(300, 300, 0)}, {Vector3(500, 500, 0)}
+		};
+		drawTriangles(points);
+
+		// Draw Arrow
+		int arrowOffset = 25;
+		int arrowPointX = 500;
+		int arrowPointY = 400;
+		int arrowEdgeX = arrowPointX + arrowOffset;
+		int arrowEdgeY = arrowPointY - (arrowOffset * 2);
+		int arrowHeight = 200;
+
+		drawArrow1(arrowPointX, arrowPointY, arrowEdgeX, arrowEdgeY, arrowOffset, arrowHeight);
 	}
 
 
@@ -264,6 +287,55 @@ namespace T3D {
 			drawArea->plotPixel(cx - y, cy + x, c);
 			drawArea->plotPixel(cx - x, cy - y, c);
 			drawArea->plotPixel(cx - y, cy - x, c);
+		}
+	}
+
+
+	void DrawTask::drawTriangles(vector<Vector3> points) {
+		// Caluculate the number of triangles to draw
+		int n = points.size() / 3;
+
+		// Draw triangle for each triplet of points
+		std::cout << "\nDEBUG\tTriangles" << "\n" << "\t| I |\t[A]\t\t[B]\t\t[C]" << "\n";
+
+		for (int i = 0; i < n * 3; i += 3) {
+			// Console debug values
+			std::cout << "\t| " << i << " |";
+			std::cout << "\t(" << points[i].x << ", " << points[i].y << ")";
+			std::cout << "\t(" << points[i + 1].x << ", " << points[i + 1].y << ")";
+			std::cout << "\t(" << points[i + 2].x << ", " << points[i + 2].y << ")";
+			std::cout << "\n";
+
+			drawDDALine((int)points[i].x, (int)points[i].y, (int)points[i + 1].x, (int)points[i + 1].y, Colour(0, 255, 0, 255));
+			drawDDALine((int)points[i + 1].x, (int)points[i + 1].y, (int)points[i + 2].x, (int)points[i + 2].y, Colour(0, 255, 0, 255));
+			drawDDALine((int)points[i + 2].x, (int)points[i + 2].y, (int)points[i].x, (int)points[i].y, Colour(0, 255, 0, 255));
+		}
+	}
+
+
+	void DrawTask::drawArrow1(int x1, int y1, int x2, int y2, int r, int d) {
+		// Define arrow colour
+		Colour c = Colour(255, 0, 0, 255);
+
+		// Draw arrow point
+		int offset = x2 - x1;
+
+		for (int i = 0; i < offset; i++) {
+			drawDDALine(x1, y1, x1 + i, y2, c);
+			drawDDALine(x1, y1, x1 - i, y2, c);
+		}
+
+		// Draw arrow shaft and curve
+		int x = x1;
+		int h = y1 - d;
+
+		for (int y = 0; y <= r / sqrt(2); y++) {
+			x = (int)sqrt(r * r - y * y);
+
+			drawDDALine(x1 + x, y2, x1 + x, h + y, c);
+			drawDDALine(x1 + y, y2, x1 + y, h + x, c);
+			drawDDALine(x1 - x, y2, x1 - x, h + y, c);
+			drawDDALine(x1 - y, y2, x1 - y, h + x, c);
 		}
 	}
 

@@ -29,6 +29,9 @@ namespace T3D {
 		void drawPythCircle(int cx, int cy, int r, Colour c);
 		void drawBresCircle(int cx, int cy, int r, Colour c);
 
+		void drawTriangles(vector<Vector3> points);
+		void drawArrow1(int x1, int y1, int x2, int y2, int r, int d);
+
 		virtual void update(float dt);
 
 	private:
