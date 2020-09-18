@@ -4,7 +4,7 @@
  *
  * Author - John Aslin
  *
- * Lollipop Sweep for Assignment 1 - Task 1: Sweep
+ * UFO Sweep for Assignment 1 - Task 1: Sweep
 */
 
 #include "UFO.h"
