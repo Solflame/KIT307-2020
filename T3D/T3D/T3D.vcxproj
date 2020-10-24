@@ -12,14 +12,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Assignment2Test.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="Bone.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Colour.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="DiagMessageTask.cpp" />
     <ClCompile Include="DrawTask.cpp" />
+    <ClCompile Include="Drone.cpp" />
+    <ClCompile Include="Dumpster.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FontCache.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -27,6 +31,7 @@
     <ClCompile Include="GLShader.cpp" />
     <ClCompile Include="GLTestApplication.cpp" />
     <ClCompile Include="GLTestRenderer.cpp" />
+    <ClCompile Include="Hat.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="KeyboardController.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -46,9 +51,11 @@
     <ClCompile Include="PlaneMesh.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Robot.cpp" />
     <ClCompile Include="RotateBehaviour.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderTest.cpp" />
+    <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SoundTestTask.cpp" />
@@ -67,14 +74,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Assignment2Test.h" />
     <ClInclude Include="Billboard.h" />
     <ClInclude Include="Bone.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Colour.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="Cylinder.h" />
     <ClInclude Include="DiagMessageTask.h" />
     <ClInclude Include="DrawTask.h" />
+    <ClInclude Include="Drone.h" />
+    <ClInclude Include="Dumpster.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="FontCache.h" />
     <ClInclude Include="GameObject.h" />
@@ -82,6 +93,7 @@
     <ClInclude Include="GLShader.h" />
     <ClInclude Include="GLTestApplication.h" />
     <ClInclude Include="GLTestRenderer.h" />
+    <ClInclude Include="Hat.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="KeyboardController.h" />
     <ClInclude Include="Light.h" />
@@ -100,9 +112,11 @@
     <ClInclude Include="PlaneMesh.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Robot.h" />
     <ClInclude Include="RotateBehaviour.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderTest.h" />
+    <ClInclude Include="Shop.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SoundTestTask.h" />
