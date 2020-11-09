@@ -12,7 +12,7 @@
 #define GLRENDERER_H
 
 #define WINDOW_WIDTH		1024
-#define	WINDOW_HEIGHT		640
+#define	WINDOW_HEIGHT		512
 
 #include <list>
 #include "renderer.h"

@@ -61,6 +61,12 @@
     <Filter Include="Source Files\Miscellaneous">
       <UniqueIdentifier>{4d94b0f6-3db6-4a1b-8006-c3a30eef95fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ExamContent">
+      <UniqueIdentifier>{94831e7b-dfb8-451b-9112-9ec2046915b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ExamContent">
+      <UniqueIdentifier>{d0c54aab-fa90-4bae-b99a-ab2698243bdd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -221,6 +227,12 @@
     </ClCompile>
     <ClCompile Include="ParticleGravity.cpp">
       <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawExamTask.cpp">
+      <Filter>Source Files\ExamContent</Filter>
+    </ClCompile>
+    <ClCompile Include="Exam2020.cpp">
+      <Filter>Source Files\ExamContent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -385,6 +397,12 @@
     </ClInclude>
     <ClInclude Include="ParticleGravity.h">
       <Filter>Header Files\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawExamTask.h">
+      <Filter>Header Files\ExamContent</Filter>
+    </ClInclude>
+    <ClInclude Include="Exam2020.h">
+      <Filter>Header Files\ExamContent</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

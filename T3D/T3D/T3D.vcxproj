@@ -19,7 +19,9 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="DiagMessageTask.cpp" />
+    <ClCompile Include="DrawExamTask.cpp" />
     <ClCompile Include="DrawTask.cpp" />
+    <ClCompile Include="Exam2020.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FontCache.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -74,7 +76,9 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="DiagMessageTask.h" />
+    <ClInclude Include="DrawExamTask.h" />
     <ClInclude Include="DrawTask.h" />
+    <ClInclude Include="Exam2020.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="FontCache.h" />
     <ClInclude Include="GameObject.h" />
