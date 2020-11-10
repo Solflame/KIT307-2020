@@ -11,11 +11,14 @@
 #define EXAM2020_H
 
 #include "WinGLApplication.h"
-//#include "KeyboardController.h"
-#include "Camera.h"
-//#include "Animation.h"
-#include "DrawExamTask.h"
+#include "KeyboardController.h"
 #include "PerfLogTask.h"
+#include "Camera.h"
+#include "Animation.h"
+#include "DrawExamTask.h"
+#include "ExamMesh.h"
+#include "ExamQ3Mesh2.h"
+
 
 namespace T3D {
 

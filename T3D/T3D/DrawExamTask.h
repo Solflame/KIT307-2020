@@ -46,11 +46,14 @@ namespace T3D {
 
 
 		/**
-		 * Exam[2020] - Draws a filled unknown shape.
+		 * Exam[2020] - Draws a filled semi-circle, oriented to the north-west at 45 degrees.
 		 *
+		 * @param cx: Center x.
+		 * @param cy: Center y.
+		 * @param r: Radius.
 		 * @param c: Colour.
 		 */
-		void drawShape(Colour c);
+		void drawSemiCircle(int cx, int cy, int r, Colour c);
 
 
 		/**
@@ -103,6 +106,11 @@ namespace T3D {
 		Matrix3x3 polyCoords;
 		vector<Vector3> polyVertices;
 		Vector3 polyBL, polyTR;
+
+		// EXAM 2020
+		Matrix3x3* mRot;
+		Matrix3x3* mScale;
+		int cx, cy, r;
 	};
 }
 #endif

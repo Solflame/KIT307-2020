@@ -29,6 +29,13 @@ namespace T3D {
 
 		//polyCoords = Matrix3x3::IDENTITY;
 
+		// EXAM 2020
+		cx = 100, cy = 100, r = 50;
+
+		mRot = new Matrix3x3();
+
+
+
 		init();
 	}
 
@@ -51,6 +58,8 @@ namespace T3D {
 		/*drawParallelogram(wLeft + 100, wBot - 150, wRight - 100, wTop + 150, (int)(wRight / 1.5), Colour(255, 0, 0, 255));*/
 
 		//drawPie(512, 256, 100, 45, Colour(0, 255, 0, 255));
+
+		//drawSemiCircle(wRight / 2, wBot / 2, 200, Colour(100, 255, 0, 255));
 	}
 
 
@@ -98,8 +107,31 @@ namespace T3D {
 	}
 
 
-	void DrawExamTask::drawShape(Colour c) {
+	void DrawExamTask::drawSemiCircle(int cx, int cy, int r, Colour c) {
+		double startAngle = M_PI_4;
+		double endAngle = startAngle + M_PI;
+		double step = 0.005;
+		int x = 0;
+		int y = r;
 
+		int xMax = cx;
+		int xMin = cx;
+		int yMax = cy;
+		int yMin = cy;
+
+		drawArea->plotPixel(cx, cy, c);	// Center point
+
+		double angle = startAngle;
+
+		while (angle <= endAngle) {
+			x = (int)(r * cos(angle));
+			y = (int)(r * sin(angle));
+
+			drawArea->plotPixel(cx + x, cy - y, c);
+			drawBresLine(cx, cy, cx + x, cy - y, c);
+
+			angle += step;
+		}
 	}
 
 
@@ -239,19 +271,38 @@ namespace T3D {
 	void DrawExamTask::update(float dt) {
 		drawArea->clear(Colour(0, 0, 0, 255));
 
+		// Apply rotation transformation
+		float angle = 1.0f;
+		
 
-		polyVertices[0].x += 0.5;
+		mRot->SetColumn(0, Vector3(cos(angle), sin(angle), 0));
+		mRot->SetColumn(1, Vector3(-sin(angle), cos(angle), 0));
+		mRot->SetColumn(2, Vector3(0, 0, 1));
 
-		drawParallelogram(
-			(int)polyVertices[0].x,		// Left
-			(int)polyVertices[0].y,		// Bottom
-			(int)polyVertices[1].x,		// Right
-			(int)polyVertices[1].y,		// Top
-			(int)(polyVertices[1].x / 2),	// Width
-			Colour(255, 0, 0, 255));		// Colour
+		/*mRot = Matrix3x3(
+			cos(1.0) * cx, 0, 0,
+			sin(1.0) * cy, 0, 0,
+			0, 0, 1
+		);*/
+
+		// Apply the scale transformation
+		float scale = 1.01f;
 
 
-		//drawParallelogram(wLeft + 100, wBot - 150, wRight - 100, wTop + 150, (int)(wRight / 1.5), Colour(255, 0, 0, 255));
+
+		drawSemiCircle(cx, cy, r, Colour(100, 255, 0, 255));
+		//drawSemiCircle(cx, cy, r, Colour(100, 255, 0, 255));
+
+
+	//polyVertices[0].x += 0.5;
+
+	//drawParallelogram(
+	//	(int)polyVertices[0].x,		// Left
+	//	(int)polyVertices[0].y,		// Bottom
+	//	(int)polyVertices[1].x,		// Right
+	//	(int)polyVertices[1].y,		// Top
+	//	(int)(polyVertices[1].x / 2),	// Width
+	//	Colour(255, 0, 0, 255));		// Colour
 
 		app->getRenderer()->reloadTexture(drawArea);
 	}

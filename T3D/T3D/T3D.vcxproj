@@ -22,6 +22,8 @@
     <ClCompile Include="DrawExamTask.cpp" />
     <ClCompile Include="DrawTask.cpp" />
     <ClCompile Include="Exam2020.cpp" />
+    <ClCompile Include="ExamMesh.cpp" />
+    <ClCompile Include="ExamQ3Mesh2.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FontCache.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -79,6 +81,8 @@
     <ClInclude Include="DrawExamTask.h" />
     <ClInclude Include="DrawTask.h" />
     <ClInclude Include="Exam2020.h" />
+    <ClInclude Include="ExamMesh.h" />
+    <ClInclude Include="ExamQ3Mesh2.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="FontCache.h" />
     <ClInclude Include="GameObject.h" />

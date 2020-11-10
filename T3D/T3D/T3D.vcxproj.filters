@@ -234,6 +234,12 @@
     <ClCompile Include="Exam2020.cpp">
       <Filter>Source Files\ExamContent</Filter>
     </ClCompile>
+    <ClCompile Include="ExamMesh.cpp">
+      <Filter>Source Files\ExamContent</Filter>
+    </ClCompile>
+    <ClCompile Include="ExamQ3Mesh2.cpp">
+      <Filter>Source Files\ExamContent</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">
@@ -402,6 +408,12 @@
       <Filter>Header Files\ExamContent</Filter>
     </ClInclude>
     <ClInclude Include="Exam2020.h">
+      <Filter>Header Files\ExamContent</Filter>
+    </ClInclude>
+    <ClInclude Include="ExamMesh.h">
+      <Filter>Header Files\ExamContent</Filter>
+    </ClInclude>
+    <ClInclude Include="ExamQ3Mesh2.h">
       <Filter>Header Files\ExamContent</Filter>
     </ClInclude>
   </ItemGroup>
