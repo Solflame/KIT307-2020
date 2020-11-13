@@ -12,13 +12,12 @@
 namespace T3D {
 
 	Exam2020::Exam2020(void) {
-		//drawArea = new Texture(1024, 640, false);
-		/*drawArea = new Texture(1024, 512, false);
-		drawArea->clear(Colour(255, 255, 255, 255));*/
+		drawArea = new Texture(1024, 512, false);
+		drawArea->clear(Colour(255, 255, 255, 255));
 
 		// Initialise
-		/*drawExamTask = NULL;
-		perfLogTask = NULL;*/
+		drawExamTask = NULL;
+		perfLogTask = NULL;
 	}
 
 
@@ -33,21 +32,26 @@ namespace T3D {
 		/**
 		 *  2D Drawing
 		 */
-		/*renderer->loadTexture(drawArea, false);
+		renderer->loadTexture(drawArea, false);
 		renderer->add2DOverlay(drawArea, 0, 0);
 
 		drawExamTask = new DrawExamTask(this, drawArea);
 		addTask(drawExamTask);
 
 		perfLogTask = new PerfLogTask(this);
-		addTask(perfLogTask);*/
+		addTask(perfLogTask);
 
 
 		/**
 		 * 3D Meshs
 		 */
 
-		 // Light
+		 // Skybox and fog
+		renderer->loadSkybox("Resources/Sunny1");
+		renderer->setFog(0.007f, 0.8f, 0.8f, 0.8f, 1.0f);
+		renderer->toggleFog();
+
+		// Light
 		GameObject* lightObj = new GameObject(this);
 		Light* light = new Light(Light::DIRECTIONAL);
 		light->setAmbient(1, 1, 1);
@@ -58,21 +62,70 @@ namespace T3D {
 			setLocalRotation(Vector3(-45 * Math::DEG2RAD, 70 * Math::DEG2RAD, 0));
 		lightObj->getTransform()->setParent(root);
 
+		// Materials
+		Material* matGreen = renderer->createMaterial(Renderer::PR_OPAQUE);
+		matGreen->setDiffuse(0, 1, 0, 1);
+
+		// Letter r mesh
+		GameObject* examQ3Mesh2 = new GameObject(this);
+		examQ3Mesh2->setMesh(new ExamQ3Mesh2(20, 5, 10));
+		examQ3Mesh2->setMaterial(matGreen);
+		examQ3Mesh2->getTransform()->setLocalPosition(Vector3(0, 0, 0));
+		examQ3Mesh2->getTransform()->setParent(root);
+		examQ3Mesh2->getTransform()->name = "ExamQ3Mesh2";
+
 		// Camera
 		GameObject* cameraObj = new GameObject(this);
 		renderer->camera =
-			new Camera(Camera::PERSPECTIVE, 0.1, 500.0, 45.0, 1.6);
+			new Camera(Camera::PERSPECTIVE, 0.1, 500.0, 45.0, 1.5);
 		cameraObj->getTransform()->setLocalPosition(Vector3(0, 0, 20));
 		cameraObj->getTransform()->setLocalRotation(Vector3(0, 0, 0));
 		cameraObj->setCamera(renderer->camera);
 		cameraObj->getTransform()->setParent(root);
+		cameraObj->getTransform()->name = "Camera";
 		cameraObj->addComponent(new KeyboardController());
 
-		GameObject* examQ3Mesh2 = new GameObject(this);
-		examQ3Mesh2->setMesh(new ExamQ3Mesh2(50, 100, 30));
-		examQ3Mesh2->setMaterial(new Material(255, 0, 0, 255));
-		examQ3Mesh2->getTransform()->setLocalPosition(Vector3(0, 0, 0));
-		examQ3Mesh2->getTransform()->setParent(root);
+		// Animate ExamQ4Task1
+		float animationTime = 5.0f + 1.5f + 3.0f + 0.5f;
+		float animShapeStep;
+		float animCamStep;
+
+		Animation* examQ4Task1 = new Animation(animationTime);
+		examQ3Mesh2->addComponent(examQ4Task1);
+
+		Animation* cam = new Animation(animationTime);
+		cameraObj->addComponent(cam);
+
+		// Initialise animation
+		examQ4Task1->addKey("ExamQ3Mesh2", animShapeStep = 0, examQ3Mesh2->getTransform()->getQuaternion(), Vector3(0, 0, 0));
+		cam->addKey("Camera", animCamStep = 0, cameraObj->getTransform()->getQuaternion(), Vector3(-5, 5, 5));
+
+		// Over the first 5 seconds, your shape should move from position (0,0,0) to position (5,0,0)
+		examQ4Task1->addKey("ExamQ3Mesh2", animShapeStep += 5, examQ3Mesh2->getTransform()->getQuaternion(), Vector3(5, 0, 0));
+
+		// Over the next 1.5 second, the shape should rotate to 'face' in the positive z direction
+		examQ4Task1->addKey("ExamQ3Mesh2", animShapeStep += 1.5f, Quaternion(Vector3(0, 90 * Math::DEG2RAD, 0)), Vector3(5, 0, 0));
+
+		// Over the first 6.5 seconds, the camera should move from position (-5,5,5) to position (10,5,10)
+		cam->addKey("Camera", animCamStep += 6.5f, cameraObj->getTransform()->getQuaternion(), Vector3(10, 5, 10));
+
+		// Over the next 3 seconds, the shape should move to the position(5, 10, 0)
+		examQ4Task1->addKey("ExamQ3Mesh2", animShapeStep += 3, Quaternion(Vector3(0, 90 * Math::DEG2RAD, 0)), Vector3(5, 10, 0));
+
+		// Over the next 0.5 seconds, the shape should fall(left or right) so that it is lying on it's side with the lowest point having y=0
+		examQ4Task1->addKey("ExamQ3Mesh2", animShapeStep += 0.5f, Quaternion(Vector3(0, 90 * Math::DEG2RAD, 90 * Math::DEG2RAD)), Vector3(5, 10, 0));
+
+		// Over the remaining 3.5 seconds, the camera should move up 5 units
+		cam->addKey("Camera", animCamStep += 3.5f, cameraObj->getTransform()->getQuaternion(), Vector3(10, 10, 10));
+
+
+
+		// Execute the animation
+		examQ4Task1->loop(false);
+		examQ4Task1->play();
+		cam->loop(false);
+		cam->play();
+
 
 		return true;
 	}

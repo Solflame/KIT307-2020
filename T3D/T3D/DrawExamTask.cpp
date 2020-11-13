@@ -273,7 +273,7 @@ namespace T3D {
 
 		// Apply rotation transformation
 		float angle = 1.0f;
-		
+
 
 		mRot->SetColumn(0, Vector3(cos(angle), sin(angle), 0));
 		mRot->SetColumn(1, Vector3(-sin(angle), cos(angle), 0));
